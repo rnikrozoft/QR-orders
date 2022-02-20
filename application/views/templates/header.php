@@ -38,5 +38,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
     <!-- CSS Files -->
     <link id="pagestyle" href="<?php echo base_url('/assets/css/argon-dashboard.min.css') ?>" rel="stylesheet" />
-    <!-- Anti-flicker snippet (recommended)  -->
+
+    <?php
+    if (isset($styles))
+        foreach ($styles as $style)
+            echo "<link rel='stylesheet' href='" . $style . "'>"; ?>
 </head>
