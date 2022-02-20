@@ -21,8 +21,8 @@ class Admins extends CI_Controller
      */
     public function index()
     {
-        $data['scripts'][] = '/assets/js/plugins/chartjs.min.js';
-        $data['scripts'][] = '/assets/js/custom/dataset1.js';
+        $data['scripts'][] = base_url('/assets/js/plugins/chartjs.min.js');
+        $data['scripts'][] = base_url('/assets/js/custom/dataset1.js');
 
         $this->load->view('admins_area/dashboard', $data);
     }
