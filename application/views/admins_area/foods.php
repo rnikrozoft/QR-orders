@@ -127,59 +127,58 @@
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-auto d-flex align-items-center">
-                                    <h6 class="mb-0">พนักงาน</h6>
+                                    <h6 class="mb-0">รายการอาหาร</h6>
                                 </div>
                                 <div class="col-auto">
                                     <?php
                                     if ($this->session->flashdata('message') != '') {
-                                        echo "<button class='btn btn-outline-danger btn-sm mb-0 insert' data-bs-toggle='modal' data-bs-target='#em-m'>" . $this->session->flashdata('message') . "</button>";
+                                        echo "<button class='btn btn-outline-danger btn-sm mb-0' data-bs-toggle='modal' data-bs-target='#fd-a'>" . $this->session->flashdata('message') . "</button>";
                                     } else {
-                                        echo "<button class='btn btn-outline-primary btn-sm mb-0 insert' data-bs-toggle='modal' data-bs-target='#em-m'>เพิ่มข้อมูล</button>";
+                                        echo "<button class='btn btn-outline-primary btn-sm mb-0' data-bs-toggle='modal' data-bs-target='#fd-a'>เพิ่มข้อมูล</button>";
                                     }
                                     ?>
                                 </div>
                                 <div class="col-auto">
-                                    <a class="btn btn-sm btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลนี้ ?');" href="<?php echo base_url('employees/deleteAll') ?>">ลบทั้งหมด</a>
+                                    <a class="btn btn-sm btn-danger" onclick="return confirm('ยืนยันการลบข้อมูลนี้ ?');" href="<?php echo base_url('foods/deleteAll') ?>">ลบทั้งหมด</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body px-0 pt-0 pb-2">
+                        <div class="card-body pt-0 pb-2">
                             <div class="table-responsive p-0">
                                 <table class="table align-items-center mb-0">
                                     <thead>
                                         <tr>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Author</th>
-                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
-                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
-                                            <th class="text-secondary opacity-7"></th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">เมนู</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" width="70%">รายละเอียด</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">สถานะ</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคา</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จัดการ</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($data as $r) { ?>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex px-2 py-1">
-                                                        <div class="img-fds">
-                                                            <img src="<?php echo site_url($r->imgPath); ?>" class="avatar avatar-xl me-3" width="74">
-                                                        </div>
-                                                        <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm"><?php echo $r->name; ?></h6>
-                                                        </div>
+                                                    <div class="img-fds">
+                                                        <img src="<?php echo site_url('assets/uploads/foods/' . $r->imgName); ?>" class="avatar avatar-xl me-3" width="74">
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="text-xs font-weight-bold mb-0"><?php echo $r->detail; ?></p>
+                                                    <h6 class="mb-0 text-sm"><?php echo $r->name; ?></h6>
+                                                    <p class="text-xs text-secondary mb-0 f-d"><?php echo $r->detail; ?></p>
                                                 </td>
                                                 <td class="align-middle text-center text-sm">
-                                                    <span class="badge badge-sm bg-gradient-success">ยังไม่หมด</span>
+                                                    <span class="badge badge-sm bg-gradient-success"><?php echo $r->qty; ?> จาน</span>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-bold"><?php echo $r->price; ?> บาท</span>
                                                 </td>
                                                 <td class="align-middle">
-                                                    <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-                                                        Edit
+                                                    <a href="javascript:;" class="btn btn-sm btn-warning edit" data-bs-toggle="modal" data-bs-target="#fd-e" data-id="<?php echo $r->id; ?>" data-name="<?php echo $r->name; ?>" data-detail="<?php echo $r->detail; ?>" data-qty="<?php echo $r->qty; ?>" data-price="<?php echo $r->price; ?>" data-img="<?php echo $r->imgName; ?>">
+                                                        แก้ไข
+                                                    </a>
+                                                    <a onclick="return confirm('ยินยันการลบข้อมูล ?');" href="<?php echo base_url('/foods/deleteByID/' . $r->id . '/' . $r->imgName) ?>" class="btn btn-sm btn-danger">
+                                                        ลบ
                                                     </a>
                                                 </td>
                                             </tr>
@@ -197,7 +196,7 @@
 
     <!--   Core JS Files   -->
     <?php include('application/views/templates/footer-script.php') ?>
-    <?php include('application/views/admins_area/modal/employee.php') ?>
+    <?php include('application/views/admins_area/modal/food.php') ?>
 
 </body>
 
