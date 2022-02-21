@@ -1,13 +1,4 @@
 $(document).ready(function() {
-    $('.table').DataTable({
-        "language": {
-            "paginate": {
-                "previous": "«",
-                "next": "»"
-            }
-        }
-    });
-
     $(".insert").click(function() {
         $("#em-m").on("shown.bs.modal", function(t) {
             $(this).find("input")
