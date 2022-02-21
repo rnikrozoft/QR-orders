@@ -1,3 +1,9 @@
+td>p.f-d {
+    height: 2em;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+
 .img-fds img {
     display: block;
     width: 100vw;
