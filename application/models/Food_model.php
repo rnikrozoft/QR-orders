@@ -5,7 +5,8 @@ class Food_model extends CI_Model
     public $name;
     public $detail;
     public $price;
-    public $imgPath;
+    public $qty;
+    public $imgName;
 
     public function getAllData()
     {
@@ -13,22 +14,16 @@ class Food_model extends CI_Model
         return $query->result();
     }
 
-    // public function insert_entry()
-    // {
-    //     if ($this->getEmpById($_POST['id']) != "false") {
-    //         $this->id    = $_POST['id'];
-    //         $this->fname    = $_POST['fn'];
-    //         $this->lname    = $_POST['ln'];
-    //         $this->nname    = $_POST['nn'];
-    //         $this->age    = $_POST['a'];
-    //         $this->tel    = $_POST['t'];
+    public function insert_entry($img)
+    {
+        $this->name    = $_POST['n'];
+        $this->detail    = $_POST['d'];
+        $this->price    = $_POST['p'];
+        $this->qty    = $_POST['q'];
+        $this->imgName    = $img;
 
-    //         $this->db->insert('employees', $this);
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+        $this->db->insert('foods', $this);
+    }
 
     // public function getEmpById($id)
     // {
@@ -44,34 +39,29 @@ class Food_model extends CI_Model
     //     }
     // }
 
-    // public function deleteAll()
-    // {
-    //     return $this->db->empty_table('employees');
-    // }
+    public function deleteAll()
+    {
+        return $this->db->empty_table('foods');
+    }
 
-    // public function deleteByID($id)
-    // {
-    //     $this->db->where('id', $id);
-    //     return $this->db->delete('employees');
-    // }
+    public function deleteByID($id)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('foods');
+    }
 
-    // public function update_entry()
-    // {
-    //     $this->fname    = $_POST['fn'];
-    //     $this->lname    = $_POST['ln'];
-    //     $this->nname    = $_POST['nn'];
-    //     $this->age    = $_POST['a'];
-    //     $this->tel    = $_POST['t'];
+    public function update_entry($img)
+    {
 
-    //     $data = array(
-    //         'fname' => $_POST['fn'],
-    //         'lname' => $_POST['ln'],
-    //         'nname' => $_POST['nn'],
-    //         'age' => $_POST['a'],
-    //         'tel' => $_POST['t']
-    //     );
+        $data = array(
+            'name' => $_POST['n'],
+            'detail' => $_POST['d'],
+            'price' => $_POST['p'],
+            'qty' => $_POST['q'],
+            'imgName' => $img
+        );
 
-    //     $this->db->where('id', $_POST['id']);
-    //     $this->db->update('employees', $data);
-    // }
+        $this->db->where('id', $_POST['id']);
+        $this->db->update('foods', $data);
+    }
 }
