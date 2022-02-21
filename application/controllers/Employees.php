@@ -16,6 +16,7 @@ class Employees extends CI_Controller
         $data['scripts'][] = 'https://code.jquery.com/jquery-3.5.1.js';
         $data['scripts'][] = 'https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js';
         $data['scripts'][] = 'https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap4.min.js';
+        $data['scripts'][] = base_url('/assets/js/custom/datatable.js');
         $data['scripts'][] = base_url('/assets/js/custom/employee.js');
 
 
